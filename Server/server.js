@@ -10,11 +10,11 @@ connectDb()
 const app = express()
 app.use(cors())
 
-app.use("/api/clerk", clerkWebhooks)
-
 // Middleware
 app.use(express.json())
 app.use(clerkMiddleware())
+
+app.post("/api/clerk", clerkWebhooks)
 
 app.get('/', (req,res)=> res.send("Api is Working"))
 

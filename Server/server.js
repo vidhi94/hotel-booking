@@ -11,9 +11,10 @@ const app = express()
 app.use(cors())
 
 app.use(express.json())
-app.use(clerkMiddleware()) 
+// app.use(clerkMiddleware()) 
 
-app.use('/api/clerk', clerkWebhooks)
+// app.use('/api/clerk', clerkWebhooks)
+app.use('/api/clerk', clerkMiddleware(), clerkWebhooks)
 
 app.get('/', (req, res)=> res.send('API is working'))
 

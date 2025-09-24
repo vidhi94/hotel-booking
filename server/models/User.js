@@ -14,12 +14,12 @@
 import mongoose from "mongoose";
 
 const userSchema = mongoose.Schema({
-    _id : {type: String, require: true},
-    username : {type: String, require: true},
-    email : {type: String, require: true},
-    Image : {type: String, require: true},
+    _id : {type: String, required: true},
+    username : {type: String, required: true},
+    email : {type: String, required: true},
+    Image : {type: String, required: true},
     role : {type: String, enum: ["user", "hotelOwwner"], default: "user"},
-    recentSearchedCities : [{type: String, require: true}]
+    recentSearchedCities : [{type: String, required: true}]
 }, {timestamps : true})
 
 const User = mongoose.model("user", userSchema)

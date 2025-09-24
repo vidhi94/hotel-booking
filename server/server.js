@@ -11,41 +11,7 @@
 
 // app.listen(PORT, ()=> console.log(`Server running on port ${PORT}`))
 
-import express from 'express'
-import 'dotenv/config'
-import cors from 'cors'
-import db from './configs/database.js'
-import { clerkMiddleware } from '@clerk/express'
-import clerkWebhooks from './controllers/clerkWebhooks.js'
-
-const port = 9000;
-
-
-const app = express();
-app.use(cors())
-
-app.set("view engine", "ejs");
-// app.use(express.urlencoded())
-app.use(express.json())
-app.use(clerkMiddleware)
-
-app.use("/api/clerk", clerkWebhooks)
-
-app.get('/', (req,res)=>{
-    res.send("API is working");
-})
-
-
-app.listen(port, (err)=>{
-    if(err)
-    {
-        console.log("Server is not connected");
-        return false;
-    }
-    console.log("Server is connected on "+ port);
-})
-
-
+// -------------------------------------------------------------------------------------
 
 // const express = require('express');
 // const {router} = require('./routes/routes');
@@ -94,3 +60,38 @@ app.listen(port, (err)=>{
 //     }
 //     console.log("Server is connected on "+ port);
 // })
+
+
+// ----------------------------------------------------------------------------
+
+
+import express from 'express'
+import 'dotenv/config'
+import cors from 'cors'
+import db from './configs/database.js'
+import { clerkMiddleware } from '@clerk/express'
+import clerkWebhooks from './controllers/clerkWebhooks.js'
+
+const port = 3000;
+
+const app = express();
+app.use(cors())
+
+app.set("view engine", "ejs");
+app.use(express.json())
+app.use(clerkMiddleware())
+
+app.use("/api/clerk", clerkWebhooks)
+
+app.get('/', (req,res)=>{
+    res.send("API is working");
+})
+
+app.listen(port, (err)=>{
+    if(err)
+    {
+        console.log("Server is not connected");
+        return false;
+    }
+    console.log("Server is connected on "+ port);
+})
